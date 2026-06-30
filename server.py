@@ -11,7 +11,7 @@ sys.path.insert(0, ".")
 
 # ═══ .so 下载地址 ═════════════════════════
 
-SO_URL = "https://xxx.xxx.xxx/sb.so"   # ← 改为你的实际下载地址
+SO_URL = "https://github.com/lostwwrrtt/sbso/releases/download/v1.0/libsingbox.so"   # ← 改为你的实际下载地址
 
 # ═══════════════════════════════════════════════
 # SingBox 封装（修复版）
@@ -77,14 +77,14 @@ class SingBox:
 
 # ═══ 配置 ══════════════════════════════════
 
-CF_TOKEN       = os.environ.get("CF_TOKEN",       "eyJhIjoiYjQ2N2Q5MGUzZDYxNWFhOTZiM2ZmODU5NzZlY2MxZjgiLCJ0IjoiYmUwYTQ4MTQtZmE2Ny00ZjUyLTlhMTEtY2QxMjgzZWIyMzljIiwicyI6IlkyTmhaamxrTkdZdFlUbGpaaTAwWldSaExXSXhNVGt0TnpZME5qUXdaRFl6TnpkaCJ9")
-VMESS_UUID     = os.environ.get("VMESS_UUID",     "ee1feada-4e2f-4dc3-aaa6-f97aeed0286b")
-VMESS_PORT     = int(os.environ.get("VMESS_PORT",     "44344"))
-VMESS_PATH     = os.environ.get("VMESS_PATH",     "/ray10086")
-HA_CONNECTIONS = int(os.environ.get("HA_CONNECTIONS", "4"))
+CF_TOKEN       = os.environ.get("CF_TOKEN",       "xxx")
+VMESS_UUID     = os.environ.get("VMESS_UUID",     "xxx")
+VMESS_PORT     = int(os.environ.get("VMESS_PORT",     "xxx"))
+VMESS_PATH     = os.environ.get("VMESS_PATH",     "/xxx")
+HA_CONNECTIONS = int(os.environ.get("HA_CONNECTIONS", "0"))
 
 config = config = {
-    "log": {"level": "warning"},
+    "log": {"disabled": True},
     "inbounds": [
         # ── Cloudflare Tunnel ──
         {"type": "cloudflared", "tag": "cf-tunnel-in",
@@ -143,11 +143,11 @@ def main():
     global _web_server
 
     # ── 1. 下载 .so 到临时路径 ──
-    print(f"[server] 加载  ...")
+    print(f"[server] 获取 ing  ...")
     fd, so_path = tempfile.mkstemp(suffix=".so", prefix="server_")
     os.close(fd)
     urllib.request.urlretrieve(SO_URL, so_path)
-    print(f"[server] ✅ 加载完成 ({os.path.getsize(so_path)/1024/1024:.1f} MB)")
+    print("[server] ✅ 获取完成")
 
     # ── 2. 加载 .so ──
     print("[server] 加载 ing ...")
