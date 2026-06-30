@@ -2,7 +2,9 @@
 nixPkgs = ["python311"]
 
 [phases.install]
-cmds = ["pip install -r requirements.txt || echo 'No dependencies'"]
+cmds = ["python3 -m pip install -r requirements.txt || echo 'No dependencies'"]
+
+[phases.build]
 
 [start]
-cmd = "python server.py"
+cmd = "python3 server.py"
